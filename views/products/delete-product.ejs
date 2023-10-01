@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+    <title>Delete Product</title>
+    <link rel="stylesheet" href="/assets/bootstrap/css/bootstrap.min.css">
+    <!-- Add any additional CSS styles as needed -->
+</head>
+
+<body>
+    <div class="container">
+        <h1>Delete Product</h1>
+        <form action="/products/delete/<%= product._id %>" method="post">
+            <p>Are you sure you want to delete the following product?</p>
+            <div class="form-group">
+                <label for="name">Product Name:</label>
+                <input type="text" class="form-control" id="name" name="name" value="<%= product.name %>" readonly>
+            </div>
+            <div class="form-group">
+                <label for="price">Price:</label>
+                <input type="number" class="form-control" id="price" name="price" value="<%= product.price %>" readonly>
+            </div>
+            <div class="form-group">
+                <label for="category">Category:</label>
+                <input type="text" class="form-control" id="category" name="category" value="<%= product.category %>" readonly>
+            </div>
+            <!-- Add any additional fields you want to display -->
+
+            <button type="submit" class="btn btn-danger">Delete</button>
+        </form>
+    </div>
+    <script src="/assets/bootstrap/js/bootstrap.min.js"></script>
+    <!-- Add any additional scripts as needed -->
+</body>
+
+</html>

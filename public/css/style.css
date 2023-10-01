@@ -1,0 +1,38 @@
+/* Style the product container */
+.products {
+    display: flex;
+    flex-direction: row;
+    gap: 20px;
+    overflow-x: auto;
+}
+
+/* Style individual products */
+.product {
+    min-width: 250px;
+    text-align: center;
+    border: 1px solid #ccc;
+    padding: 10px;
+    box-sizing: border-box;
+}
+
+/* This will be hard to override */
+body .product img {
+    width: 200px;
+    height: 300px;
+    object-fit: cover;
+}
+
+.product img {
+    width: 200px !important;
+    height: 300px !important;
+    object-fit: cover !important;
+}
+
+.admin-button {
+    width: 150px; 
+    height: 52px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
