@@ -21,6 +21,7 @@ const userRoutes = require('./routes/UserRoutes');
 const productRoutes = require('./routes/productRoutes');
 const orderRoutes = require('./routes/orderRoutes');
 const adminRoutes = require('./routes/adminRoutes'); 
+const facebookRoutes = require('./routes/facebookRoutes'); 
 
 
 app.use(methodOverride('_method'));
@@ -87,6 +88,12 @@ app.use('/users', userRoutes);
 app.use('/orders', orderRoutes);
 app.use('/', orderRoutes);
 app.use('/admin', adminRoutes);
+app.use('/admin', adminRoutes);
+
+app.use('/admin/facebookLogin', (req, res, next) => {
+  console.log('Facebook routes accessed');
+  next();
+}, facebookRoutes);
 
 // Error Handling Middleware
 app.use((err, req, res, next) => {
