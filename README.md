@@ -39,7 +39,7 @@ The project follows the MVC (Model-View-Controller) architecture:
 
 To get the project running locally:
 
-1. **Clone the Repository**: `git clone https://github.com/eilonasraf/Ecommerce-FullStack-Project.git`
+1. **Clone the Repository**: `git clone https://github.com/eilonasraf/E-Commerce-Website-Project.git`
 2. **Install Dependencies**: Navigate to the project directory and run `npm install`.
 3. **Set Up Environment Variables**: Create a `.env` file at the root of the project and define necessary environment variables, such as database URI and API keys.
 4. **Start the Server**: Run `npm start` to launch the application.
