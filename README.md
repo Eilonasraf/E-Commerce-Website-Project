@@ -24,7 +24,7 @@ This project is a fully-functional e-commerce platform built using Express and M
 - **Data Visualization**: D3.js for creating interactive and dynamic graphs for the admin dashboard.
 - **APIs**:
   - Currency Conversion API: For real-time USD to ILS conversion.
-  - Twitter and Facebook APIs: For integrating social media functionalities.
+  - Twitter API For integrating social media functionalities.
 
 ## Project Structure
 
