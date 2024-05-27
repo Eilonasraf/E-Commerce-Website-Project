@@ -19,11 +19,9 @@ exports.renderGraphsPage = async (req, res) => {
 
 async function fetchUserData() {
   try {
-    console.log('fetchUserData started'); // Debugging line
     const ordersPerUser = await Order.aggregate([
       { $group: { _id: '$userId', orderCount: { $sum: 1 } } }
     ]);
-    console.log('Orders per User:', ordersPerUser); // Debugging line
     if (!ordersPerUser) throw new Error('No orders per user data retrieved');
 
     const userData = await User.find().lean();
@@ -42,10 +40,8 @@ async function fetchUserData() {
   }
 }
 
-  
 async function fetchProductData() {
     try {
-      console.log('fetchProductData started'); // Debugging line
       const productCount = await Product.aggregate([
         {
           $group: {
@@ -54,7 +50,6 @@ async function fetchProductData() {
           }
         }
       ]);
-      console.log('Product Count:', productCount); // Debugging line
       return productCount.map(group => ({ price: group._id, count: group.count }));
     } catch (error) {
       console.error(error);
