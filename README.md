@@ -14,7 +14,7 @@ This project is a fully-functional e-commerce platform built using Express and M
 - **User History**: Users can view their activity history, including past purchases and interactions.
 - **Dynamic Graphs**: Integration of D3.js for dynamic and interactive data visualizations, particularly useful in the admin dashboard for analytics.
 - **Currency Conversion**: Utilizes an external API to provide real-time currency conversion rates from USD to ILS (Israeli Shekel), enhancing the shopping experience for users.
-- **Social Media Integration**: Features integration with Twitter and Facebook APIs, allowing for social media interactions and functionalities directly from the platform.
+- **Social Media Integration**: Features integration with Twitter API, allowing for social media interactions and functionalities directly from the platform.
 
 ## Technologies Used
 
