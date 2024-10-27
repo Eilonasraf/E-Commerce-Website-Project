@@ -9,7 +9,6 @@ const path = require('path');
 const multer = require('multer');
 const upload = multer({ dest: 'public/images' });
 
-//const sharp = require('sharp');
 
 router.get('/product/:id', productController.getProductById);
 

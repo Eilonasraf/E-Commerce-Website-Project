@@ -9,18 +9,23 @@ const cors = require('cors');
 const app = express();
 const session = require('express-session');
 const methodOverride = require('method-override');
+const bodyParser = require('body-parser');
 
+const http = require('http');
+const server = http.createServer(app);
 
 const UserController = require('./controller/UserController');
 const productController = require('./controller/productController');
 const orderController = require('./controller/orderController');
-const adminController = require('./controller/adminController')  
+const adminController = require('./controller/adminController');
+const twitterController = require('./controller/twitterController');
 
 
 const userRoutes = require('./routes/UserRoutes');
 const productRoutes = require('./routes/productRoutes');
 const orderRoutes = require('./routes/orderRoutes');
 const adminRoutes = require('./routes/adminRoutes'); 
+const twitterRoutes = require('./routes/twitterRoutes'); 
 
 
 app.use(methodOverride('_method'));
@@ -38,12 +43,14 @@ app.use(express.static('public'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
-
 // MongoDB Connection
-console.log(process.env.MONGODB_URI);
-mongoose.connect(process.env.MONGODB_URI, { useNewUrlParser: true, useUnifiedTopology: true })
-    .then(() => console.log('Connected to MongoDB'))
-    .catch((error) => console.error('Failed to connect to MongoDB:', error));
+mongoose.connect(process.env.MONGODB_URI, { 
+  useNewUrlParser: true, 
+  useUnifiedTopology: true, 
+  ssl: true 
+})
+.then(() => console.log('Connected to Cosmos DB'))
+.catch((error) => console.error('Failed to connect to Cosmos DB:', error));
 
 
 // Set up EJS view engine and views directory
@@ -56,14 +63,14 @@ app.use('/user', express.static(path.join(__dirname, 'public/user')));
 const multer = require('multer');
 const upload = multer({ dest: 'public/images' }); // Set the destination directory
 
-// Login and Signup routes
 app.post('/login', UserController.login);
 app.post('/signup', UserController.signup);
 
-// Define a route to serve the login page
 app.get('/login', (req, res) => {
-  res.render('login'); 
-});
+  res.render('login', {
+    username: req.session.user ? req.session.user.username : null
+  });
+  });
 
 app.get('/signup', (req, res) => {
   res.render('signup'); 
@@ -75,10 +82,11 @@ app.get('/error', (req, res) => {
   res.render('error');
 });
 
+const cookieParser = require('cookie-parser');
+app.use(cookieParser());
 
 app.use((req, res, next) => {
-  console.log('New request:', req.method, req.url);
-  res.locals.username = req.session.username; // Make username available in all views
+  res.locals.username = req.session.user ? req.session.user.username : null;
   next();
 });
 
@@ -87,6 +95,7 @@ app.use('/users', userRoutes);
 app.use('/orders', orderRoutes);
 app.use('/', orderRoutes);
 app.use('/admin', adminRoutes);
+app.use('/admin', twitterRoutes);
 
 // Error Handling Middleware
 app.use((err, req, res, next) => {

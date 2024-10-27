@@ -14,9 +14,8 @@
 <body>
     <nav class="navbar navbar-expand-md navbar-light">
         <div class="container d-flex justify-content-between">
-            <!-- Tabs for toggling between Login and Signup (left side) -->
             <ul class="nav nav-tabs" id="authTabs" role="tablist">
-                <% if (!username) { %> <!-- Display "Login" and "Sign-Up" when not logged in -->
+                <% if (!username) { %> 
                     <li class="nav-item">
                         <a class="btn btn-light switchhover1" href="/login" style="margin: 20px;">Login</a>
                     </li>
@@ -37,12 +36,10 @@
                 <button class="btn btn-outline-success ml-2" type="submit">Search</button>
             </form>
        
+            <div id="welcomeUser"></div>
 
-            <!-- Log username and isAdmin status -->
             <% console.log('Username:', username); %>
             <% console.log('isAdmin:', isAdmin); %>
-            <!-- Log username and isAdmin status -->
-
 
             <% if (username && !isAdmin) { %>
             <div class="d-flex align-items-center">
@@ -51,16 +48,16 @@
                 <a class="btn btn-primary mr-2" role="button" href="/history">Order history</a>
             <% } %>
 
-            <!-- Admin Buttons in HTML -->
-            <% if (isAdmin) { %>
-                <a class="btn btn-primary mr-2 admin-button" role="button" href="/orders/admin/history">Users history</a>
-                <a href="/admin/graphs" class="btn btn-success mr-2 admin-button">Graphs</a>
-                <a href="/products/create" class="btn btn-success mr-2 admin-button">Create Product</a>
-            <% } %>
+                <% if (isAdmin) { %>
+                    <a class="btn btn-primary mr-2 admin-button" role="button" href="/orders/admin/history">Users history</a>
+                    <a href="/admin/graphs" class="btn btn-success mr-2 admin-button">Graphs</a>
+                    <a class="btn btn-primary mr-2 admin-button" role="button" href="/admin/twitter">Twitter Api</a>
+                    <a href="/products/create" class="btn btn-success mr-2 admin-button">Create Product</a>
+                <% } %>
         </div>
     </nav>
 
-    <!-- Product Listing -->
+<!-- Product Listing -->
 <div class="container">
     <h1 style="margin-bottom: 25px; margin-top: 30px;">Products</h1>
     <div class="row">
@@ -102,13 +99,10 @@
     </div>
 </div>
 
-
-    
     <script src="/assets/bootstrap/js/bootstrap.min.js"></script>
     <script src="https://cdn.reflowhq.com/v1/toolkit.min.js" data-reflow-store="267418190"></script>
     <script src="/assets/js/bs-init.js"></script>
-    <script type="text/javascript">
-    </script>
+    <script type="text/javascript"></script>
 
 </body>
 
