@@ -31,32 +31,24 @@ exports.logout = async (req, res) => {
 };
 
 exports.signup = async (req, res) => {
-    const { username, password } = req.body;
-  
-    try {
-      const existingUser = await User.findOne({ username });
-      if (existingUser) {
-        return res.status(400).json({ message: 'User already exists' });
-      }
-  
-      const hashedPassword = await bcrypt.hash(password, 10);
-      
-      const newUser = new User({
-        username,
-        password: hashedPassword
-      });
-  
-      await newUser.save();
+  const { username, password } = req.body;
 
-      req.session.username = newUser.username;
-      req.session.userId = newUser._id; 
-      req.session.isAdmin = newUser.isAdmin; 
-  
-      res.redirect('/');  
-    } catch (error) {
-      res.status(500).json({ message: 'Error creating user', error: error.message });
-    }
-  };
+  // Check if the user already exists
+  const existingUser = await User.findOne({ username });
+  if (existingUser) {
+      return res.status(400).json({ message: 'User already exists' });
+  }
+
+  const hashedPassword = await bcrypt.hash(password, 10);
+  const user = new User({ username, password: hashedPassword });
+
+  try {
+      await user.save();
+      res.status(201).json({ message: 'User created successfully' });
+  } catch (error) {
+      res.status(500).json({ message: 'Error creating user', error: error });
+  }
+};
 
 exports.checkAdmin = async (req, res) => {
   const { username } = req.body;
