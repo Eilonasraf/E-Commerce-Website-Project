@@ -26,6 +26,10 @@
     "uuid": "^9.0.1"
   },
   "scripts": {
-    "start": "node server.js"
+  "start": "node server.js",
+  "start:production": "set NODE_ENV=production && node server.js"
+  },
+  "devDependencies": {
+    "cross-env": "^7.0.3"
   }
 }

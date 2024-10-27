@@ -17,9 +17,6 @@ exports.renderGraphsPage = async (req, res) => {
     }
 };
 
-async function hey(){
-  
-}
 async function fetchUserData() {
   try {
     const ordersPerUser = await Order.aggregate([
