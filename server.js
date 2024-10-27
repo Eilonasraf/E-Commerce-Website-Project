@@ -44,14 +44,23 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
 // MongoDB Connection
-mongoose.connect(process.env.MONGODB_URI, {
-  useNewUrlParser: true,
-  useUnifiedTopology: true,
-  ssl: true
+  // Set the URI based on the environment
+let uri;
+if (process.env.NODE_ENV === 'production') {
+    uri = process.env.MONGODB_URI_COSMOS; // Cosmos DB connection string
+    console.log("Running in production mode: Connecting to Cosmos DB");
+} else {
+    uri = process.env.MONGODB_URI_LOCAL; // Local MongoDB connection string
+    console.log("Running in development mode: Connecting to Local MongoDB");
+}
+// Connect to the database
+mongoose.connect(uri, {
+    useNewUrlParser: true,
+    useUnifiedTopology: true,
+    ssl: process.env.NODE_ENV === 'production'  // Enable SSL only for Cosmos DB
 })
-.then(() => console.log('Connected to Cosmos DB'))
-.catch((error) => console.error('Failed to connect to Cosmos DB:', error));
-
+.then(() => console.log(`Connected to ${process.env.NODE_ENV === 'production' ? 'Cosmos DB' : 'Local MongoDB'}`))
+.catch((error) => console.error('Failed to connect:', error));
 
 // Set up EJS view engine and views directory
 app.set('view engine', 'ejs');
