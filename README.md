@@ -1,4 +1,4 @@
-Here's a sample README template for your GitHub project, an e-commerce website:
+Here's a sample README template for GitHub project, an e-commerce website:
 
 ---
 
